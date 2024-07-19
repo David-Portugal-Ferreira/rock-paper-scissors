@@ -60,7 +60,6 @@ function playRound(humanChoice, computerChoice) {
         humanChoice === 'paper' && computerChoice === 'rock' ||
         humanChoice === 'scissors' && computerChoice === 'paper'
     ) {
-        console.log(humanChoice, computerChoice);
         humanScore++;
         div.innerText = 'You Win! Rock beats Scissors';
         body.appendChild(div);
@@ -71,12 +70,11 @@ function playRound(humanChoice, computerChoice) {
         humanChoice === 'paper' && computerChoice === 'scissors' ||
         humanChoice === 'scissors' && computerChoice === 'rock'
     ) {
-        console.log(humanChoice, computerChoice);
+        (humanChoice, computerChoice);
         computerScore++;
         div.innerText = 'You lose! Scissors beats Paper';
         body.appendChild(div);
     } else {
-        console.log(humanChoice, computerChoice);
         div.innerText = 'Draw';
         body.appendChild(div);
     }

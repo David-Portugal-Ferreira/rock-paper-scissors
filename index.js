@@ -1,4 +1,3 @@
-// Variables For Player Score and Computer Score
 let humanScore = 0;
 let computerScore = 0;
 

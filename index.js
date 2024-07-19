@@ -26,8 +26,12 @@ body.appendChild(scissorsButton);
 
 body.appendChild(divScore);
 body.addEventListener('click', (e) => {
+    if(e.target.id !== 'rock-button' &&
+         e.target.id !== 'paper-button' && 
+         e.target.id !== 'scissors-button') return;
+
     if (humanScore < 5 || computerScore < 5) {
-        let computerSelection = getComputerChoice();
+        let computerSelection = generateComputerChoice();
         playRound(e.target.value, computerSelection);
         updateScoreDiv();
     }
@@ -50,55 +54,31 @@ function updateScoreDiv() {
 }
 
 function playRound(humanChoice, computerChoice) {
-    if (humanChoice === 'rock' && computerChoice === 'rock') {
-        div.innerText = 'Draw';
-        body.appendChild(div);
-        return
 
-    } else if (humanChoice === 'rock' && computerChoice === 'paper') {
-        computerScore++;
-        div.innerText = 'You lose! Paper beats Rock';
-        body.appendChild(div);
-        return
-
-    } else if (humanChoice === 'rock' && computerChoice === 'scissors') {
+    if (
+        humanChoice === 'rock' && computerChoice === 'scissors' ||
+        humanChoice === 'paper' && computerChoice === 'rock' ||
+        humanChoice === 'scissors' && computerChoice === 'paper'
+    ) {
+        console.log(humanChoice, computerChoice);
         humanScore++;
         div.innerText = 'You Win! Rock beats Scissors';
         body.appendChild(div);
-        return
+    }
 
-    } else if (humanChoice === 'paper' && computerChoice === 'rock') {
-        humanScore++;
-        div.innerText = 'You Win! Paper beats Rock';
-        body.appendChild(div);
-        return
-
-    } else if (humanChoice === 'paper' && computerChoice === 'paper') {
-        div.innerText = 'Draw';
-        return
-
-    } else if (humanChoice === 'paper' && computerChoice === 'scissors') {
+    else if (
+        humanChoice === 'rock' && computerChoice === 'paper' ||
+        humanChoice === 'paper' && computerChoice === 'scissors' ||
+        humanChoice === 'scissors' && computerChoice === 'rock'
+    ) {
+        console.log(humanChoice, computerChoice);
         computerScore++;
         div.innerText = 'You lose! Scissors beats Paper';
         body.appendChild(div);
-        return
-
-    } else if (humanChoice === 'scissors' && computerChoice === 'rock') {
-        computerScore++;
-        div.innerText = 'You lose! Rock beats Scissors';
-        body.appendChild(div);
-        return
-
-    } else if (humanChoice === 'scissors' && computerChoice === 'paper') {
-        humanScore++;
-        div.innerText = 'You win. Scissors beats Paper';
-        body.appendChild(div);
-        return
-
-    } else if (humanChoice === 'scissors' && computerChoice === 'scissors') {
+    } else {
+        console.log(humanChoice, computerChoice);
         div.innerText = 'Draw';
         body.appendChild(div);
-        return
     }
 }
 
